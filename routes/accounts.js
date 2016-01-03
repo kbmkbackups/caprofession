@@ -45,6 +45,19 @@ router.post('/pan/insert/:accountname', function(req, res, next) {
 });
 
 
+router.get('/pan/:accountname', function(req, res, next) {
+    console.log('hiii find One and insert'+req.params.accountname);
+
+    accounts.findOne({accountname:req.params.accountname.toString() }, function(err, account) {
+        if (err) return next(err);
+        //res.json(req.body);
+       var arrdata = account.pancardentities;
+         res.json(arrdata);
+
+    });
+});
+
+
 
 
 router.get('/find/:accountname', function(req, res, next) {
