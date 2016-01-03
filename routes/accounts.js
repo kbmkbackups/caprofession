@@ -20,7 +20,12 @@ router.get('/', function(req, res, next) {
 
 router.get('/pan/vw', function(req, res, next) {
     var query=req.query.accountname;
-    res.json(query);
+    accounts.findOne({accountname:query.toString()}, function(err, account) {
+        if (err) return next(err);
+        //res.json(req.body);
+        var arrdata = account.pancardentities;
+        res.json(arrdata);
+    });
 });
 
 router.get('/find/:accountname', function(req, res, next) {
