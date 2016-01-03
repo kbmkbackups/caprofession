@@ -20,18 +20,7 @@ router.get('/', function(req, res, next) {
 
 router.get('/pan/vw', function(req, res, next) {
     var query=req.query.accountname;
-    accounts.findOne({accountname:query.toString() }, function(err, account) {
-        if (err) {
-            res.json('something went wrong.top');
-        }
-        if(account.pancardentities.length > 0)
-        {
-            res.json(account.pancardentities);
-        }
-        else{
-            res.json('something went wrong.');
-        }
-    });
+    res.json(query);
 });
 
 router.get('/find/:accountname', function(req, res, next) {
