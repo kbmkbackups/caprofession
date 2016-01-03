@@ -6,14 +6,31 @@ var accounts = require('../models/accounts');
 var router = express.Router();
 
 /* GET home page. */
+router.get('/', function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Cache-Control, Pragma, Origin, Content-Type, X-Requested-With");
+    res.header("Access-Control-Allow-Methods", "GET, PUT, POST");
+    console.log('hiii find all');
+    var query=req.query;
+    accounts.find(query,function(err, docs) {
+        if (err) return next(err);
+        res.json(docs);
+    });
+});
 
 router.get('/pan/vw', function(req, res, next) {
     var query=req.query.accountname;
     accounts.findOne({accountname:query.toString() }, function(err, account) {
-        if (err) return next(err);
-        //res.json(req.body);
-        var arrdata = account.pancardentities;
-        res.json(arrdata);
+        if (err) {
+            res.json('something went wrong.top');
+        }
+        if(account.pancardentities.length > 0)
+        {
+            res.json(account.pancardentities);
+        }
+        else{
+            res.json('something went wrong.');
+        }
     });
 });
 
