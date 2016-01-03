@@ -20,6 +20,10 @@ router.get('/', function(req, res, next) {
 
 
 router.post('/insert', function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Cache-Control, Pragma, Origin, Content-Type, X-Requested-With");
+    res.header("Access-Control-Allow-Methods", "GET, PUT, POST");
+
     console.log('hiii insert');
     var accountdata =new accounts(req.body);
     accounts.create(accountdata, function(err, doc) {
@@ -30,6 +34,10 @@ router.post('/insert', function(req, res, next) {
 
 
 router.post('/pan/insert/:accountname', function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Cache-Control, Pragma, Origin, Content-Type, X-Requested-With");
+    res.header("Access-Control-Allow-Methods", "GET, PUT, POST");
+
     console.log('hiii find One and insert'+req.params.accountname);
 
     accounts.findOne({accountname:req.params.accountname.toString() }, function(err, account) {
@@ -45,7 +53,11 @@ router.post('/pan/insert/:accountname', function(req, res, next) {
 });
 
 
-router.get('/pan/:accountname', function(req, res, next) {
+router.get('/pan/vw/:accountname', function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Cache-Control, Pragma, Origin, Content-Type, X-Requested-With");
+    res.header("Access-Control-Allow-Methods", "GET, PUT, POST");
+
     console.log('hiii find One and insert'+req.params.accountname);
 
     accounts.findOne({accountname:req.params.accountname.toString() }, function(err, account) {
@@ -61,6 +73,10 @@ router.get('/pan/:accountname', function(req, res, next) {
 
 
 router.get('/find/:accountname', function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Cache-Control, Pragma, Origin, Content-Type, X-Requested-With");
+    res.header("Access-Control-Allow-Methods", "GET, PUT, POST");
+
     console.log('hiii find One'+req.params.accountname);
     accounts.findOne({accountname:req.params.accountname.toString() }, function(err, doc) {
         if (err) return next(err);
@@ -69,6 +85,10 @@ router.get('/find/:accountname', function(req, res, next) {
 });
 
 router.delete('/:id', function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Cache-Control, Pragma, Origin, Content-Type, X-Requested-With");
+    res.header("Access-Control-Allow-Methods", "GET, PUT, POST");
+
     console.log('hiii delete One'+req.params.id);
     accounts.remove({_id:req.params.id.toString() }, function(err, doc) {
         if (err) return next(err);
