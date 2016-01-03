@@ -6,17 +6,6 @@ var accounts = require('../models/accounts');
 var router = express.Router();
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "Cache-Control, Pragma, Origin, Content-Type, X-Requested-With");
-    res.header("Access-Control-Allow-Methods", "GET, PUT, POST");
-    console.log('hiii find all');
-    var query=req.query;
-    accounts.find(query,function(err, docs) {
-        if (err) return next(err);
-        res.json(docs);
-    });
-});
 
 router.get('/pan/vw', function(req, res, next) {
     var query=req.query.accountname;
