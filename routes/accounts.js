@@ -60,7 +60,7 @@ router.get('/pan/vw/:accountname', function(req, res, next) {
 
     console.log('hiii find One and insert'+req.params.accountname);
 
-    accounts.findOne({accountname:'NSK'}, function(err, account) {
+    accounts.findOne({accountname:req.params.accountname.toString() }, function(err, account) {
         if (err) return next(err);
         //res.json(req.body);
        var arrdata = account.pancardentities;
