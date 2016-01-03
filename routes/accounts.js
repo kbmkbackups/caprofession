@@ -19,6 +19,7 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/pan/vw', function(req, res, next) {
+
     var query=req.query.an;
     accounts.findOne({accountname:query.toString()}, function(err, account) {
         if (err) return next(err);
